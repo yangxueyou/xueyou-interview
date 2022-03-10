@@ -1,6 +1,7 @@
 - 面试题题锦
   - [HTML&CSS](/src/0003.md)
   - [JavaScript](/src/0004.md)
+  - [TypeScript](/src/0200/0210/0211.md)
   - [Reactjs](/src/0005.md)
   - [Vuejs](/src/0006.md)
   - [Nodejs](/src/0007.md)
