@@ -1,27 +1,16 @@
-function LazyMan(name) {
-  const { log } = console;
+function myflat(params) {
+  let stash = [...params];
+  let res = []
 
-  const sleep = (s) =>
-    new Promise((res) =>
-      setTimeout(() => {
-        log(`Wake up after ${s}`);
-        res();
-      }, s * 1000)
-    );
-
-  let queue = [() => log(`Hi! This is ${name}!`)];
-  const ctx = {
-    eat: (food) => queue.push(() => log(`Eat ${food}~`)) && ctx,
-    sleep: (s) => queue.push(() => sleep(s)) && ctx,
-    sleepFirst: (s) => queue.unshift(() => sleep(s)) && ctx,
-  };
-  queueMicrotask(async () => {
-    while (queue.length) {
-      await queue.shift()();
+  while (stash.length) {
+    let stashItem = stash.pop();
+    if (stashItem.length) {
+      stash.push(...stashItem)
+    } else {
+      res.push(stashItem)
     }
-  });
-
-  return ctx;
+  }
+  return res.reverse()
 }
 
-LazyMan("Hank").eat("supper").sleepFirst(2).sleepFirst(2);
+console.log(myflat([1, [2, 3, [4], 5], 6]));
