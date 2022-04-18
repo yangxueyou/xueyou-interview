@@ -1,16 +1,15 @@
-function myflat(params) {
-  let stash = [...params];
-  let res = []
-
-  while (stash.length) {
-    let stashItem = stash.pop();
-    if (stashItem.length) {
-      stash.push(...stashItem)
-    } else {
-      res.push(stashItem)
-    }
+function add() {
+  let arr = [...arguments];
+  function fn() {
+    arr.push(...arguments);
+    return fn
   }
-  return res.reverse()
+
+  fn.valueOf = function () {
+    return arr.reduce((sum, cur) => sum + cur)
+  }
+
+  return fn
 }
 
-console.log(myflat([1, [2, 3, [4], 5], 6]));
+console.log(add(1)(2)(3)(4).valueOf());
