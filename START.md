@@ -5,6 +5,8 @@ $ npm i docsify-cli -g
 
 $ docsify init projectName
 
+$ cd ..
+
 $ docsify serve xueyou-interview
 
 ```
